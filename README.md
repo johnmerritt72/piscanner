@@ -14,3 +14,15 @@ Once all frames have been captured, a separate script using ffmpeg is called tha
 References:
 
 https://makersportal.com/blog/raspberry-pi-stepper-motor-control-with-nema-17
+
+Products purchased:
+Raspberry Pi: https://www.amazon.com/gp/product/B01LPLPBS8/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
+Pi Camera: https://www.amazon.com/gp/product/B07PQ63D2S/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
+Pi Heatsink: https://www.amazon.com/gp/product/B076ZH6X9L/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
+Standoffs: https://www.amazon.com/gp/product/B07KM27KC6/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
+Stepper motor: https://www.amazon.com/gp/product/B01N30ISYC/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
+DRV8825 stepper driver: https://www.amazon.com/gp/product/B07KZ6K11H/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
+Stepper motor bracket: https://www.amazon.com/gp/product/B07F8RLPBC/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
+Stepepr motor heatsink: https://www.amazon.com/gp/product/B01HSBM72W/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1
+Motor shaft coupler: https://www.amazon.com/gp/product/B06X9W7V75/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
+LED Clamp Light: https://www.amazon.com/gp/product/B078V111B7/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&psc=1

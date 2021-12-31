@@ -9,7 +9,7 @@ import pygame
 import io
 import sqlite3
 
-conn = sqlite3.connect('/home/pi/scanner2.db')
+conn = sqlite3.connect('scanner2.db')
 c = conn.cursor()
 c.execute('SELECT frameNumber, savePath, iso, shutterSpeed, brightness, AwbMode, awb1, awb2, isoWidth FROM ScanSettings WHERE id=1')
 data = c.fetchall()
@@ -50,12 +50,14 @@ GPIO.output(DIR, CW)
 camera = picamera.PiCamera()
 camera.vflip = False
 camera.hflip = False
-camera.resolution = (1280, 720)
-camera.crop = (0.0, 0.0, 1.0, 1.0)
-#camera.framerate = Fraction(1, 8)
+cameraResX = 2592
+cameraResY = 1944
+camera.resolution = (cameraResX, cameraResY)
+camera.zoom = (0.1, 0, 0.9, 0.9)
+camera.framerate = 15
 camera.shutter_speed = int(shutterSpeed)
 camera.brightness = int(brightness)
-camera.exposure_mode = 'off'
+camera.exposure_mode = 'auto'
 camera.awb_mode = 'off' #'flash' #awb_mode
 camera.awb_gains = (awb1, awb2)
 camera.iso = int(iso)
@@ -167,7 +169,7 @@ def captureMenu():
 def TakePhoto():
      # TAKE A PHOTO
     #camera.zoom = (0.2, 0.2, 0.8, 0.8)
-    camera.zoom = (0.15, 0.05, 0.7, 0.7)
+    #camera.zoom = (0.15, 0.05, 0.7, 0.7)
     camera.start_preview()
     sleep(0.5)
     filename = "frame{:05d}.jpg".format(frameNumber)
@@ -189,7 +191,7 @@ def TakePhoto():
 def TakePhotos():
      # TAKE THREE PHOTOS
     #camera.zoom = (0.2, 0.2, 0.8, 0.8)
-    camera.zoom = (0.15, 0.05, 0.7, 0.7)
+    #camera.zoom = (0.15, 0.05, 0.7, 0.7)
     camera.start_preview()
 
     camera.shutter_speed = getShutterSpeed(1)
@@ -228,7 +230,7 @@ def CapturePhotos():
     global path
     #camera.zoom = (0.2, 0.2, 0.8, 0.8)
     #camera.zoom = (0.14, 0, 0.8, 0.8)
-    camera.zoom = (0.15, 0, 0.9, 0.9)
+    #camera.zoom = (0.15, 0, 0.9, 0.9)
     camera.start_preview()
     camera.shutter_speed = getShutterSpeed(2)
     camera.iso = int(iso)
@@ -237,14 +239,14 @@ def CapturePhotos():
     while (quitPressed == 0):
         camera.shutter_speed = getShutterSpeed(2)
         camera.iso = int(iso)
-        frameNumber = frameNumber + 1
         odd = 'A'
-        if (frameNumber % 1) == 0:
-            odd = 'B'
-        if frameNumber == 20000:
-            path = path[0:-1]+"b/"
+        #if (frameNumber % 1) == 0:
+        #    odd = 'B'
+        #if frameNumber == 20000:
+        #    path = path[0:-1]+"b/"
         filename = "frame"+odd+"{:05d}.jpg".format(frameNumber)
         camera.capture(path + filename, format='jpeg', quality=100)
+	frameNumber = frameNumber + 1
         c.execute('UPDATE ScanSettings SET savePath="' + path + '", frameNumber=' + str(frameNumber) +' WHERE id=1')
         conn.commit()
         screen.fill(black)
@@ -284,7 +286,7 @@ def CapturePhotos():
 
 def CapturePhotosBracketed():
     quitPressed = 0
-    camera.zoom = (0.15, 0.05, 0.7, 0.7)
+    #camera.zoom = (0.15, 0.05, 0.7, 0.7)
     camera.start_preview()
     sleep(0.5)
     global frameNumber
@@ -378,7 +380,7 @@ def main_loop():
 
     while (quitPressed == 0):
         
-        camera.zoom = (0.14, 0.1, 0.8, 0.8)
+        #camera.zoom = (0.14, 0.1, 0.8, 0.8)
         x = 20
         y = 260
         xsize = 800
